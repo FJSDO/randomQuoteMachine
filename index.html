@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <script>
+        const QUOTEBANK = [
+            {
+                quote: "Some people don't like change, but you need to embrace change if the alternative is disaster",
+                author: "Elon Musk"
+            },  {
+                quote: "The only thing we have to fear is fear itself.",
+                author: "Franklin D. Roosevelt"
+            },  {
+                quote: "The truth will set you free.",
+                author: "The Bible"
+            },  {
+                quote: "Life is too short for long-term grudges.",
+               author: "Elon Musk"
+            }
+        ]
+            window.onload = init;
+            function init() {
+                generateQuote()
+            }
+            function generateQuote() {
+                let quoteSize = QUOTEBANK.length;
+                let randomIndex =  Math.floor(Math.random() * quoteSize);
+                let randomQuoteData = QUOTEBANK[randomIndex];
+                
+
+                let twitterLink= "https://twitter.com/intent/tweet?hashtags=quotes&amp;amp;related=freecodecamp&amp;amp;text=%22" 
+                
+                //add the quote
+                let quoteInApiFormat = randomQuoteData.quote.replace(/ /g,"%20");
+                twitterLink +=quoteInApiFormat
+
+                //add the author
+                let authorInApiFormat = randomQuoteData.author.replace(/ /g,"%20");
+                twitterLink += " - " + authorInApiFormat
+                
+                document.getElementById("tweet-quote").href = twitterLink;
+                document.getElementById("text").innerText = randomQuoteData.quote;
+                document.getElementById("author").innerText = randomQuoteData.author;
+            }
+        </script>
+    <style>
+        * {
+            font-size: 1.5rem;
+            margin: 20px 20px 20px 20px;
+            text-align: center;
+        }
+    </style>
+    </head>
+    <body>
+        <wrapper id="quote-box">
+            <div id="text"></div>
+            <div id="author"></div>
+            <button id="new-quote" onClick="generateQuote();">New Quote</button>
+            <a href="#" id="tweet-quote" target="_blank">Tweet Quote</a>
+            </div>
+        </wrapper>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    </body>
+</html>
